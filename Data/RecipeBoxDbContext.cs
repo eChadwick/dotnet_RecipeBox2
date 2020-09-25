@@ -11,10 +11,15 @@ namespace RecipeBox2.Data
         }
 
         public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Ingredient>()
+                .HasIndex(e => e.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<Recipe>()
                 .HasIndex(e => e.Name)
                 .IsUnique();
         }
