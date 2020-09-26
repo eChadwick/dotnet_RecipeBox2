@@ -12,6 +12,7 @@ namespace RecipeBox2.Data
 
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<RecipeIngredient> RecipeIngredient { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,5 +27,6 @@ namespace RecipeBox2.Data
             modelBuilder.Entity<RecipeIngredient>()
                 .HasKey(e => new { e.RecipeId, e.IngredientId } );
         }
+
     }
 }
