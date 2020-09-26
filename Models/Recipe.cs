@@ -19,6 +19,7 @@ namespace RecipeBox2.Models
             set { _name = textInfo.ToTitleCase( value ); }
         }
         public string Directions { get; set; }
+        public IList<RecipeIngredient> RecipeIngredients { get; set; }
         private TextInfo textInfo;
     }
 }

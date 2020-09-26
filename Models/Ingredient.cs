@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace RecipeBox2.Models
 {
@@ -17,7 +18,7 @@ namespace RecipeBox2.Models
             get { return _name; }
             set { _name = textInfo.ToTitleCase(value); }
         }
-
+        public IList<RecipeIngredient> RecipeIngredients { get; set; }
         private TextInfo textInfo;
     }
 }

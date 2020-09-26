@@ -22,6 +22,9 @@ namespace RecipeBox2.Data
             modelBuilder.Entity<Recipe>()
                 .HasIndex(e => e.Name)
                 .IsUnique();
+
+            modelBuilder.Entity<RecipeIngredient>()
+                .HasKey(e => new { e.RecipeId, e.IngredientId } );
         }
     }
 }
