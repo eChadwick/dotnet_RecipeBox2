@@ -50,7 +50,7 @@ namespace RecipeBox2.Controllers
         }
 
         // POST: Recipes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -63,6 +63,15 @@ namespace RecipeBox2.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(recipe);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> MyCreate(RecipeCreateViewModel model)
+        {
+            int x = 5;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Recipes/Edit/5
@@ -82,7 +91,7 @@ namespace RecipeBox2.Controllers
         }
 
         // POST: Recipes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]

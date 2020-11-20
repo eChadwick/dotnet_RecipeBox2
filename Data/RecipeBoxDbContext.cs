@@ -26,6 +26,8 @@ namespace RecipeBox2.Data
 
             modelBuilder.Entity<RecipeIngredient>()
                 .HasKey(e => new { e.RecipeId, e.IngredientId } );
+
+            modelBuilder.Ignore<RecipeCreateViewModel>();
         }
 
     }

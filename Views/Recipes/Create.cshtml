@@ -1,4 +1,4 @@
-@model RecipeBox2.Models.Recipe
+@* @model RecipeBox2.Models.Recipe
 
 @{
     ViewData["Title"] = "Create";
@@ -21,6 +21,8 @@
                 <label asp-for="Directions" class="control-label"></label>
                 <input asp-for="Directions" class="form-control" />
                 <span asp-validation-for="Directions" class="text-danger"></span>
+                <input type="text" name="Instructions[]">
+                <input type="text" name="Instructions[]">
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -35,4 +37,57 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+} *@
+
+@model RecipeBox2.Models.RecipeCreateViewModel
+<form asp-action="MyCreate" asp-controller="Recipes" method="POST">
+    <div class="RecipeNamePane">
+        <label asp-for="Name"></label><br>
+        <input asp-for="Name" placeholder="Recipe Name"><br><br>
+    </div>
+
+    <div class="RecipeDirectionsPane">
+        <div id="Directions_0">
+            <label asp-for="Directions"></label><br>
+            <input asp-for="Directions[0]"><br><br>
+        </div>
+    </div>
+
+    <div class="RecipeIngredientsPane" id="RecipeIngredientsPane">
+        <label asp-for="Ingredients"></label>
+        <button type="button" onclick="addIngredientFields()">Add Ingredient</button>
+        <div id="Ingredients_0">
+            <input asp-for="Ingredients[0].Name" placeholder="Ingredient Name">
+            <input asp-for="Ingredients[0].Measurement" placeholder="Ingredient Measurement"><br>
+        </div>
+    </div>
+
+    <br><input type="submit">
+</form>
+
+<script>
+    var nextIngredientId = 1;
+    function addIngredientFields() {
+        var target = document.getElementById("RecipeIngredientsPane");
+
+        var newNode = document.createElement("div");
+        newNode.id = "Ingredients_" + nextIngredientId;
+
+        var nameField = document.createElement("input");
+        nameField.id = "Ingredients_" + nextIngredientId + "_Name";
+        nameField.placeholder = "Ingredient Name";
+        nameField.type = "text";
+        nameField.name = "Ingredients[" + nextIngredientId + "].Name";
+
+        var measurementField = document.createElement("input");
+        measurementField.id = "Ingredients_" + nextIngredientId + "_Measurement";
+        measurementField.placeholder = "Ingredient Measurement";
+        measurementField.type = "text";
+        measurementField.name = "Ingredients[" + nextIngredientId + "].Measurement";
+
+        newNode.append(nameField, measurementField);
+
+        target.appendChild(newNode);
+        nextIngredientId++;
+    }
+</script>
