@@ -1,2 +1,9 @@
-#Directions_0 {
+.OuterFlexContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.InnerFlexContainer {
+    display: flex;
+    flex-direction: row;
 }

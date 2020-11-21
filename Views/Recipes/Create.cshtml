@@ -49,26 +49,29 @@
 
 @model RecipeBox2.Models.RecipeCreateViewModel
 <form asp-action="MyCreate" asp-controller="Recipes" method="POST">
-    <div class="RecipeNamePane">
-        <label asp-for="Name"></label><br>
-        <input asp-for="Name" placeholder="Recipe Name"><br><br>
-    </div>
-
-    <div class="RecipeDirectionsPane">
-        <div id="Directions_0">
-            <label asp-for="Directions"></label><br>
-            <input asp-for="Directions[0]"><br><br>
+    <div class="OuterFlexContainer">
+        <div class="RecipeNamePane">
+            <label asp-for="Name"></label><br>
+            <input asp-for="Name" placeholder="Recipe Name"><br><br>
         </div>
-    </div>
 
-    <div class="RecipeIngredientsPane" id="RecipeIngredientsPane">
-        <label asp-for="Ingredients"></label>
-        <button type="button" onclick="addIngredientFields()">Add Ingredient</button>
-        <div id="Ingredients_0">
-            <input asp-for="Ingredients[0].Name" placeholder="Ingredient Name">
-            <input asp-for="Ingredients[0].Measurement" placeholder="Ingredient Measurement"><br>
+        <div class="InnerFlexContainer">
+            <div class="RecipeIngredientsPane" id="RecipeIngredientsPane">
+                <label asp-for="Ingredients"></label>
+                <button type="button" onclick="addIngredientFields()">Add Ingredient</button>
+                <div id="Ingredients_0">
+                    <input asp-for="Ingredients[0].Name" placeholder="Ingredient Name">
+                    <input asp-for="Ingredients[0].Measurement" placeholder="Ingredient Measurement"><br>
+                </div>
+            </div>
+
+            <div class="RecipeDirectionsPane">
+                <label asp-for="Directions"></label><br>
+                <input asp-for="Directions"><br><br>
+            </div>
         </div>
-    </div>
 
-    <br><input type="submit">
+        <br><input type="submit">
+
+    </div>
 </form>

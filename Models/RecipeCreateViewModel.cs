@@ -7,7 +7,7 @@ namespace RecipeBox2.Models
     {
         public string Name { get; set; }
 
-        public List<string> Directions { get; set; }
+        public string Directions { get; set; }
 
         // public List<KeyValuePair<string, string>> Ingredients { get; set; }
 
