@@ -1,9 +1,31 @@
-.OuterFlexContainer {
-    display: flex;
-    flex-direction: column;
+.Directions {
+    border-radius: 6px;
+    border-style: solid;
+    flex-grow: 1;
 }
 
-.InnerFlexContainer {
+.IngredientDirectionFlexContainer {
     display: flex;
     flex-direction: row;
+    flex-flow: wrap;
+}
+
+.IngredientMeasurement {
+    width: 120px;
+}
+
+.IngredientName {
+    width: 195px;
+}
+
+.RecipeIngredientsPane {
+    flex-basis: 355px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.RecipeDirectionsPane {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }

@@ -1,44 +1,3 @@
-@* @model RecipeBox2.Models.Recipe
-
-@{
-    ViewData["Title"] = "Create";
-}
-
-<h1>Create</h1>
-
-<h4>Recipe</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Directions" class="control-label"></label>
-                <input asp-for="Directions" class="form-control" />
-                <span asp-validation-for="Directions" class="text-danger"></span>
-                <input type="text" name="Instructions[]">
-                <input type="text" name="Instructions[]">
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-} *@
-
 @section Styles {
     <link rel="stylesheet" href="~/css/recipe.css">
 }
@@ -49,29 +8,27 @@
 
 @model RecipeBox2.Models.RecipeCreateViewModel
 <form asp-action="MyCreate" asp-controller="Recipes" method="POST">
-    <div class="OuterFlexContainer">
-        <div class="RecipeNamePane">
-            <label asp-for="Name"></label><br>
-            <input asp-for="Name" placeholder="Recipe Name"><br><br>
-        </div>
-
-        <div class="InnerFlexContainer">
-            <div class="RecipeIngredientsPane" id="RecipeIngredientsPane">
-                <label asp-for="Ingredients"></label>
-                <button type="button" onclick="addIngredientFields()">Add Ingredient</button>
-                <div id="Ingredients_0">
-                    <input asp-for="Ingredients[0].Name" placeholder="Ingredient Name">
-                    <input asp-for="Ingredients[0].Measurement" placeholder="Ingredient Measurement"><br>
-                </div>
-            </div>
-
-            <div class="RecipeDirectionsPane">
-                <label asp-for="Directions"></label><br>
-                <input asp-for="Directions"><br><br>
-            </div>
-        </div>
-
-        <br><input type="submit">
-
+    <div class="RecipeNamePane">
+        <label asp-for="Name"></label><br>
+        <input asp-for="Name"><br><br>
     </div>
+
+    <div class="IngredientDirectionFlexContainer">
+        <div class="RecipeIngredientsPane" id="RecipeIngredientsPane">
+            <label asp-for="Ingredients"></label>
+            <button type="button" onclick="addIngredientFields()">+</button>
+            <div id="Ingredients_0">
+                <input asp-for="Ingredients[0].Measurement" class="IngredientMeasurement" placeholder="Amount"
+                ><input asp-for="Ingredients[0].Name" class="IngredientName" placeholder="Ingredient"><br>
+            </div>
+        </div>
+
+        <div class="RecipeDirectionsPane">
+            <label asp-for="Directions"></label>
+            <textarea asp-for="Directions" class="Directions"></textarea>
+        </div>
+    </div>
+
+    <br><input type="submit" value="Save Recipe">
+
 </form>
