@@ -12,20 +12,7 @@ namespace RecipeBox2.Models
 
         public string Directions { get; set; }
 
-        private List<NewIngredientModel> _ingredients;
-
-        public List<NewIngredientModel> Ingredients
-        {
-            get { return _ingredients; }
-            set
-            {
-                value.RemoveAll( v => String.IsNullOrWhiteSpace( v.Name ) &
-                                      String.IsNullOrWhiteSpace( v.Measurement )
-                );
-
-                _ingredients = value;
-            }
-        }
+        public List<NewIngredientModel> Ingredients { get; set; }
 
         public class NewIngredientModel
         {
