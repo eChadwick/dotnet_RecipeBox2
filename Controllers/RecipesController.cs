@@ -49,29 +49,17 @@ namespace RecipeBox2.Controllers
             return View();
         }
 
-        // POST: Recipes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Directions")] Recipe recipe)
+        public async Task<IActionResult> Create(RecipeCreateViewModel model)
         {
-            if (ModelState.IsValid)
+            if( ModelState.IsValid )
             {
-                _context.Add(recipe);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction( nameof(Index) );
             }
-            return View(recipe);
-        }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> MyCreate(RecipeCreateViewModel model)
-        {
-            int x = 5;
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View(model);
         }
 
         // GET: Recipes/Edit/5

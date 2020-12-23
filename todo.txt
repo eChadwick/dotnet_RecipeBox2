@@ -1,1 +1,2 @@
 Error handling, especially db errors
+Trim leading/trailing whitespace on Recipe and Ingredient Names and replace multiple spaces with single

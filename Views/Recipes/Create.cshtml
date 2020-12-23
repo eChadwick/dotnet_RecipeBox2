@@ -4,13 +4,15 @@
 
 @section Scripts {
     <script src="~/js/recipeCreateScripts.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
 @model RecipeBox2.Models.RecipeCreateViewModel
-<form asp-action="MyCreate" asp-controller="Recipes" method="POST">
+<form asp-action="Create" asp-controller="Recipes" method="POST">
     <div class="RecipeNamePane">
         <label asp-for="Name"></label><br>
-        <input asp-for="Name"><br><br>
+        <input asp-for="Name"><br>
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <div class="IngredientDirectionFlexContainer">
@@ -30,5 +32,4 @@
     </div>
 
     <br><input type="submit" value="Save Recipe">
-
 </form>
