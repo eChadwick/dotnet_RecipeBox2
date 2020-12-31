@@ -11,8 +11,19 @@ namespace RecipeBox2.Models
         public string Name { get; set; }
 
         public string Directions { get; set; }
+        private List<NewIngredientModel> _ingredients;
 
-        public List<NewIngredientModel> Ingredients { get; set; }
+        public List<NewIngredientModel> Ingredients
+        {
+            get { return _ingredients; }
+            set
+            {
+                value.RemoveAll( i => String.IsNullOrWhiteSpace( i.Name ) &
+                                      String.IsNullOrWhiteSpace( i.Measurement )
+                );
+                _ingredients = value;
+            }
+        }
 
         public class NewIngredientModel
         {
