@@ -1,9 +1,24 @@
 @model RecipeCreateViewModel
-@{
 
+@if( Model == null)
+{
+    <div id="Ingredients_0">
+        <input asp-for="Ingredients[0].Measurement" class="IngredientMeasurement" placeholder="Amount"
+        ><input asp-for="Ingredients[0].Name" class="IngredientName" placeholder="Ingredient"><br>
+    </div>
 }
+else
+{
+    @for( var i = 0; i < Model.Ingredients.Count; i++ )
+    {
+        string measurementFieldName = "Ingredients[" + i + "].Measurement";
+        string measurementFieldValue = Model.Ingredients[i].Measurement;
 
-<div id="Ingredients_0">
-    <input asp-for="Ingredients[0].Measurement" class="IngredientMeasurement" placeholder="Amount"
-    ><input asp-for="Ingredients[0].Name" class="IngredientName" placeholder="Ingredient"><br>
-</div>
+        string nameFieldName = "Ingredients[" + i + "].Name";
+        string nameFieldValue = Model.Ingredients[i].Name;
+        <div id="Ingrdient_@i">
+            <input class="IngredientMeasurement" placeholder="Amount" type="text" id=@measurementFieldName name=@measurementFieldName value=@measurementFieldValue
+            ><input class="IngredientName" placeholder="Ingredient" type="text" id="@nameFieldName" name="@nameFieldName" value="@nameFieldValue">
+        </div>
+    }
+}

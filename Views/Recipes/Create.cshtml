@@ -20,10 +20,8 @@
         <div class="RecipeIngredientsPane" id="RecipeIngredientsPane">
             <label asp-for="Ingredients"></label>
             <button type="button" onclick="addIngredientFields()">+</button>
-            <div id="Ingredients_0">
-                <input asp-for="Ingredients[0].Measurement" class="IngredientMeasurement" placeholder="Amount"
-                ><input asp-for="Ingredients[0].Name" class="IngredientName" placeholder="Ingredient"><br>
-            </div>
+
+            @{ Html.RenderPartial( "_recipeIngredient", Model ); }
         </div>
 
         <div class="RecipeDirectionsPane">
